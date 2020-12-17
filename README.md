@@ -26,7 +26,7 @@ WebRTCでP2Pの双方向通信をすることで、カメラと音声を双方�
    - Socket.ioを使用
 1. シグナリングサーバーで、受け取ったOffer SDPを、接続されているクライアントに送る
    - この時点で1代しか接続されていない場合は、待ち続ける？
-1. 
+1. 途中までで力尽きた！
 
 
 
@@ -78,4 +78,4 @@ STUNで2つのホストの直接接続を許可しない場合、TURNを実装�
 docker-compose up
 ```
 
-Access : http://localhost:3000
+Access : http://localhost:3001
