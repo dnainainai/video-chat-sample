@@ -13,6 +13,10 @@ async function getVideoStreamAndConnect() {
         navigator.mediaDevices.getUserMedia = function(constraints) {
 
             // First get ahold of the legacy getUserMedia, if present
+
+            // https://stackoverflow.com/questions/56005165/navigator-getusermedia-and-navigator-webkitgetusermedia-undefined-after-updating
+            // Since version 74 of Chrome navigator.getUserMedia, navigator.webkitGetUserMedia and navigator.mediaDevices can be used only in secure context (https), otherwise they are undefined. 
+            // ということは、 HTTPS でないと undefined か。
             var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
             // Some browsers just don't implement it - return a rejected promise with an error
