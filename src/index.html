@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Camera chat</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div>
+      <button id="connect">Connect signaling server</button>
+      <button id="reset">Reset signaling server</button>
+    </div>
+    <div>
+      <video class="black" id="localVideo" width="640" height="390" autoplay="1" ></video>
+    </div>
+    <div>
+      <video class="black" id="remoteVideo" width="640" height="390" autoplay="1" ></video>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+  </body>
+</html>
