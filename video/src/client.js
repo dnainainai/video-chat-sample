@@ -110,7 +110,23 @@ async function connect(localVideoStream) {
 
         const remoteVideo = document.getElementById('remoteVideo');
         remoteVideo.srcObject = event.streams[0];
-        remoteVideo.play();
+        console.log("remoteVideo.srcObject");
+        console.log(remoteVideo.srcObject);
+        // https://developers.google.com/web/updates/2017/06/play-request-was-interrupted#fix
+        var playPromise = remoteVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Automatic playback started!
+                // Show playing UI.
+                console.log("Play remote video.");
+            })
+            .catch(error => {
+                // Auto-play was prevented
+                // Show paused UI.
+                console.log("Cannot play remote video.");
+                console.log(error);
+            });
+        }
     }
 
     socket.on("REQUEST_PEER1_OFFER_SDP", async (data) => {
