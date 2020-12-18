@@ -1,6 +1,32 @@
 # HTTPS by nginex on Docker
 
 
+## Let's Encrypt
+
+> The main limit is Certificates per Registered Domain (50 per week). 
+
+主な上限は週50回まで。サブドメインは別だよね。
+
+> Renewals are treated specially: they don’t count against your Certificates per Registered Domain limit, but they are subject to a Duplicate Certificate limit of 5 per week.
+
+更新の扱いを受けたのかも。週5回までらしい。
+
+```bash
+docker run -it --rm --name certbot \
+            -p "80:80" -p "443:443" \
+            -v "/etc/letsencrypt:/etc/letsencrypt" \
+            -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+            certbot/certbot certonly
+```
+
+```
+1: Spin up a temporary webserver (standalone)
+2: Place files in webroot directory (webroot)
+```
+
+-> 1 を選択。 80 と443 ポートが空いていることが必要。
+
+
 
 ## オレオレ認証をしてみる。
 
