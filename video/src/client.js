@@ -107,31 +107,39 @@ async function connect(localVideoStream) {
     peerConnection.ontrack = function(event) {
         console.log("ontrack");
         console.log(event);
-
-        const remoteVideo = document.getElementById('remoteVideo');
-        remoteVideo.srcObject = event.streams[0];
-        console.log("remoteVideo.srcObject");
-        console.log(remoteVideo.srcObject);
-        // <video autoplay="1"> で自動で実行するのでここで起動する必要なし？
-        https://developers.google.com/web/updates/2017/06/play-request-was-interrupted#fix
-        remoteVideo.onloadedmetadata = function(e) {
-            console.log("remoteVideo.onloadedmetadata");
-            console.log(e);
-            var playPromise = remoteVideo.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    // Automatic playback started!
-                    // Show playing UI.
-                    console.log("Play remote video.");
-                })
-                .catch(error => {
-                    // Auto-play was prevented
-                    // Show paused UI.
-                    console.log("Cannot play remote video.");
-                    console.log(error);
-                });
-            }
-        };
+        
+        if (event.track.kind === "video") {
+            console.log("ontrack video");
+            const remoteVideo = document.getElementById('remoteVideo');
+            remoteVideo.srcObject = event.streams[0];
+            console.log("remoteVideo.srcObject");
+            console.log(remoteVideo.srcObject);
+            // <video autoplay="1"> で自動で実行するのでここで起動する必要なし？
+            https://developers.google.com/web/updates/2017/06/play-request-was-interrupted#fix
+            remoteVideo.onloadedmetadata = function(e) {
+                console.log("remoteVideo.onloadedmetadata");
+                console.log(e);
+                var playPromise = remoteVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Automatic playback started!
+                        // Show playing UI.
+                        console.log("Play remote video.");
+                    })
+                    .catch(error => {
+                        // Auto-play was prevented
+                        // Show paused UI.
+                        console.log("Cannot play remote video.");
+                        console.log(error);
+                    });
+                }
+            };
+        } else if (event.track.kind === "audio") {
+            console.log("ontrack audio");
+            // ?
+        } else {
+            console.log("ontrack other : " + event.track.kind);
+        }
     }
 
     socket.on("REQUEST_PEER1_OFFER_SDP", async (data) => {
