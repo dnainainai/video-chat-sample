@@ -2,6 +2,10 @@
 
 参考 : https://neos21.hatenablog.com/entry/2020/07/18/080000
 
+## 注意
+
+- HTTPS でないと使えない。
+  - localhost では使えるが、公開して使うためには HTTPS とするのは必須。
 
 ## 仕組み
 
