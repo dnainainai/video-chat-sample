@@ -113,21 +113,23 @@ async function connect(localVideoStream) {
         console.log("remoteVideo.srcObject");
         console.log(remoteVideo.srcObject);
         // <video autoplay="1"> で自動で実行するのでここで起動する必要なし？
-        // https://developers.google.com/web/updates/2017/06/play-request-was-interrupted#fix
-        // var playPromise = remoteVideo.play();
-        // if (playPromise !== undefined) {
-        //     playPromise.then(() => {
-        //         // Automatic playback started!
-        //         // Show playing UI.
-        //         console.log("Play remote video.");
-        //     })
-        //     .catch(error => {
-        //         // Auto-play was prevented
-        //         // Show paused UI.
-        //         console.log("Cannot play remote video.");
-        //         console.log(error);
-        //     });
-        // }
+        https://developers.google.com/web/updates/2017/06/play-request-was-interrupted#fix
+        video.onloadedmetadata = function(e) {
+            var playPromise = remoteVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Automatic playback started!
+                    // Show playing UI.
+                    console.log("Play remote video.");
+                })
+                .catch(error => {
+                    // Auto-play was prevented
+                    // Show paused UI.
+                    console.log("Cannot play remote video.");
+                    console.log(error);
+                });
+            }
+        };
     }
 
     socket.on("REQUEST_PEER1_OFFER_SDP", async (data) => {
