@@ -114,7 +114,7 @@ async function connect(localVideoStream) {
         console.log(remoteVideo.srcObject);
         // <video autoplay="1"> で自動で実行するのでここで起動する必要なし？
         https://developers.google.com/web/updates/2017/06/play-request-was-interrupted#fix
-        video.onloadedmetadata = function(e) {
+        remoteVideo.onloadedmetadata = function(e) {
             var playPromise = remoteVideo.play();
             if (playPromise !== undefined) {
                 playPromise.then(() => {
