@@ -1,25 +1,12 @@
 version: "3.8"
 services:
 
-  # ssl:
-  #   init: true
-  #   build: ssl/.
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-
-  https-portal:
-    image: steveltn/https-portal:1
+  ssl:
+    init: true
+    build: ssl/.
     ports:
-      - '80:80'
-      - '443:443'
-    links:
-      - video-chat
-    restart: always
-    environment:
-      DOMAINS: 'my-remote-access.ddo.jp => http://video-chat:3000'
-      # STAGE: 'production' # Don't use production until staging works
-      # FORCE_RENEW: 'true'
+      - 80:80
+      - 443:443
 
   video-chat:
     init: true
