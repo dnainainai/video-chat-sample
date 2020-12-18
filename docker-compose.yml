@@ -17,7 +17,7 @@ services:
       - video-chat
     restart: always
     environment:
-      DOMAINS: 'https://my-remote-access.ddo.jp/ -> http://video-chat:3000'
+      DOMAINS: 'my-remote-access.ddo.jp => http://video-chat:3000'
       # STAGE: 'production' # Don't use production until staging works
       # FORCE_RENEW: 'true'
 
