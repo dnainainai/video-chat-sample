@@ -7,6 +7,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    volumes:
+      - /etc/letsencrypt/live/my-remote-access.ddo.jp:./my-remote-access.ddo.jp
 
   video-chat:
     init: true
