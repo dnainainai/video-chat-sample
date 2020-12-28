@@ -83,3 +83,13 @@ docker-compose up
 ```
 
 Access : http://localhost:3001
+
+### Test vide chat only
+
+SSLを使用せずにLocalでテストする。LANでも、localhost以外ではSSLを使用しないとVideoにアクセスできないことに注意。
+
+```
+docker-compose -f docker-compose-local.yml up
+```
+
+Access : http://localhost:3001

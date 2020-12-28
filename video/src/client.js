@@ -57,6 +57,7 @@ function getSocket() {
 }
 
 async function connect(localVideoStream) {
+    console.log("connect()");
     const localVideo = document.getElementById('localVideo');
     localVideo.srcObject = localVideoStream;
 
@@ -95,6 +96,7 @@ async function connect(localVideoStream) {
 
     // Listen for connectionstatechange on the local RTCPeerConnection
     peerConnection.addEventListener('connectionstatechange', event => {
+        console.log("connectionstatechange");
         if (peerConnection.connectionState === 'connected') {
             // Peers connected!
             console.log("connected.");
@@ -173,9 +175,11 @@ async function connect(localVideoStream) {
 }
 
 document.getElementById("connect").addEventListener("click", () => {
+    console.log("click connect()");
     getVideoStreamAndConnect();
 });
 document.getElementById("reset").addEventListener("click", () => {
+    console.log("click reset()");
     socket = getSocket();
     socket.emit("RESET", "");
 });
