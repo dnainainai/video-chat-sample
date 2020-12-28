@@ -8,7 +8,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - /etc/letsencrypt/live/my-remote-access.ddo.jp:/etc/nginx/my-remote-access.ddo.jp
+      - /etc/letsencrypt/live/my-remote-access.ddo.jp:/etc/nginx/ssl/live/my-remote-access.ddo.jp
+      - /etc/letsencrypt/archive/my-remote-access.ddo.jp:/etc/nginx/ssl/archive/my-remote-access.ddo.jp
 
   video-chat:
     init: true
