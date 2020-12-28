@@ -96,7 +96,7 @@ async function connect(localVideoStream) {
 
     // Listen for connectionstatechange on the local RTCPeerConnection
     peerConnection.addEventListener('connectionstatechange', event => {
-        console.log("connectionstatechange");
+        console.log("connectionstatechange peerConnection.connectionState=" + peerConnection.connectionState);
         if (peerConnection.connectionState === 'connected') {
             // Peers connected!
             console.log("connected.");
